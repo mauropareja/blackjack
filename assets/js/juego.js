@@ -4,8 +4,9 @@
  * 2H = Two of Hearts (Corazones)
  * 2S = Two of Spades (Espadas)
  */
-
-let deck         = [];
+(() => {
+    'use strict'
+    let deck         = [];
 const tipos      = ['C', 'D', 'H', 'S'];
 const especiales = ['A', 'J', 'Q', 'K'];
 
@@ -19,7 +20,6 @@ const btnNuevo   = document.querySelector('#btnNuevo');
 
 const divCartasJugador     = document.querySelector('#jugador-cartas');
 const divCartasComputadora = document.querySelector('#computadora-cartas');
-
 
 const puntosHTML = document.querySelectorAll('small');
 
@@ -40,16 +40,13 @@ const crearDeck = () => {
 
     // console.log(deck);
     deck = _.shuffle( deck);
-    console.log(deck);
+    // console.log(deck);
     return deck;
-
-
 };
 
 crearDeck();
 
 //Esta función me permite tomar una carta
-
 const PedirCarta = () => {
     
     if ( deck.length === 0 ){
@@ -61,10 +58,6 @@ const PedirCarta = () => {
     // console.log(carta);
     return carta;
 }
-// for( let i = 0; i <= 60; i++ ){
-//     PedirCarta();
-// }
-// PedirCarta();
 
 const valorCarta = ( carta ) => {
     const valor = carta.substring(0, carta.length - 1);
@@ -72,16 +65,6 @@ const valorCarta = ( carta ) => {
     return ( isNaN ( valor ) ) ?
              ( valor === 'A' ) ? 11 : 10
              : valor * 1;
-
-    // console.log({valor});
-    // let puntos = 0;
-    // // 2 = 2 10 = 10, 3 = 3
-    // if (isNaN( valor )) {
-    //     puntos = ( valor === 'A' ) ? 11 : 10;
-    // } else {
-    //     puntos = valor * 1;
-    // }
-    // console.log(puntos);
 }
 
 // turno de la computadora
@@ -118,12 +101,6 @@ const turnoComputadora = (puntosMinimos) => {
      }
     }, 20);
 }
-
-// const valor = valorCarta( PedirCarta());
-// console.log({valor})
-
-//Eventos
-// función como argumento con callbak
 
 btnPedir.addEventListener('click', () => {
     
@@ -175,4 +152,6 @@ btnNuevo.addEventListener('click', () => {
 
     btnPedir.disabled   = false;
     btnDetener.disabled = false;
-} )
+} )  
+    
+})();
